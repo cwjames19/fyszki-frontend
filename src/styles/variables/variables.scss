@@ -1,0 +1,47 @@
+$color-white: #fff;
+$color-white10: rgba(255, 255, 255, 0.1);
+$color-light-grey: #fafafa;
+$color-grey: #adadad;
+$color-grey30: rgba(173, 173, 173, 0.3);
+$color-dark-grey: #5b5b5b;
+$color-black: #000;
+$color-black60: rgba(0, 0, 0, 0.6);
+$color-error: #df1000;
+
+// Typography
+$font-family: sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-size-xs: 10px;
+$font-size-small: 12px;
+$font-size-medium: 14px;
+$font-size-medium-large: 16px;
+$font-size-large: 20px;
+
+// Easing functions
+$ease-out-sine: "cubic-bezier(0.39, 0.575, 0.565, 1)";
+$ease-out-quad: "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+$ease-out-expo: "cubic-bezier(0.19, 1, 0.22, 1)";
+$ease-in-out-quad: "cubic-bezier(0.455, 0.03, 0.515, 0.955)";
+$ease-in-out-expo: "cubic-bezier(1, 0, 0, 1)";
+
+// layout
+// $container-width: 1220px;
+
+// box-shadow
+$box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+
+// mixins
+@mixin rectangle($size) {
+  width: $size;
+  height: $size;
+}
+
+// partials
+%flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

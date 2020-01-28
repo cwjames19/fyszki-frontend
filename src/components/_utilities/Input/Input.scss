@@ -1,0 +1,29 @@
+@import "../../../styles/base.scss";
+
+.input {
+  &__container {
+    display: block;
+    margin-bottom: 10px;
+
+    :last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  &__label-text,
+  &__input {
+    @extend %type-body;
+    display: block;
+  }
+
+  &__label-text {
+    margin-bottom: 5px;
+  }
+
+  &__input {
+    padding: 0px 8px;
+    min-width: 180px;
+    background: $color-grey30;
+    line-height: 24px;
+  }
+}

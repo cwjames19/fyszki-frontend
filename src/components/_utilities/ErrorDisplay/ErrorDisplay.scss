@@ -1,0 +1,8 @@
+@import "../../../styles/variables/variables.scss";
+@import "../../../styles/typography/typography.scss";
+
+.error-display {
+  display: block;
+  @extend %type-error;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,15 @@
+@import "./variables/reset.scss";
+@import "./base.scss";
+
+html {
+  -webkit-text-size-adjust: none;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+svg {
+  fill: currentColor;
+}

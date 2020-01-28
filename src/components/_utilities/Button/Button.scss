@@ -1,0 +1,104 @@
+@import "../../../styles/variables/variables.scss";
+@import "../../../styles/typography/typography.scss";
+
+.button {
+  @extend %type-strong;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  height: 36px;
+  padding: 11px 13px;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.1s, background-color 0.1s, box-shadow 0.1s;
+  font-size: 12px;
+
+  &__icon {
+    fill: #fff;
+  }
+
+  &-icon {
+    padding: 6px 13px;
+
+    .button__label {
+      margin-right: 30px;
+    }
+  }
+
+  &.settings {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 175px;
+    line-height: 44px;
+    text-align: left;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.73);
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--icon {
+    flex-direction: column-reverse;
+    background-color: transparent;
+
+    .button__icon {
+      background-color: $color-black;
+      border: solid 1px $color-white;
+      border-radius: 50%;
+      padding: 5px;
+      margin-bottom: 5px;
+
+      svg {
+        @include rectangle(22px);
+        fill: $color-white;
+      }
+    }
+
+    .button__label {
+      margin-right: 0;
+    }
+
+    &:active,
+    &:hover {
+      box-shadow: none;
+
+      .button__icon {
+        box-shadow: $box-shadow;
+        background-color: $color-white10;
+      }
+
+      .button__label {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &--icon-only {
+    @extend %flexCenter;
+    @include rectangle(36px);
+  }
+
+  &--reversed {
+    flex-direction: row-reverse;
+
+    .button__label {
+      margin-right: 0;
+      margin-left: 30px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import "../../../styles/variables/variables.scss";
+
+.svg-icon {
+  @extend %flexCenter;
+  @include rectangle(18px);
+
+  // .icon--example & {
+  //   @include rectangle(14px);
+  // }
+
+  svg {
+    @include rectangle(100%);
+  }
+}
