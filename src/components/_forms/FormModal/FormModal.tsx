@@ -1,11 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import Loader from '../../_utilities/Loader/Loader';
 import FormInput from '../../_utilities/Input/Input';
 import './FormModal.css';
 
-ReactModal.setAppElement(document.querySelector('#root'));
+type FormModalProps = {
+  showingForm: boolean;
+  hideForm: Function;
+}
+type FormModalState = {
+  userName: string;
+  userSurname: string;
+  userDescription: string;
+  userSiteUrl: string;
+  errorMessage: string;
+  loading: boolean;
+}
 
 const defaultState = {
   userName: '',
@@ -16,27 +26,13 @@ const defaultState = {
   loading: false,
 };
 
-// const saveData = function (userName, userSurname, userDescription) {
-// axios.post('/user/save-data', {
-//   baseURL,
-//   data: {
-//     user_name: userName,
-//     user_surname: userSurname,
-//     user_description: userDescription,
-//   },
-// });
-// };
 
-// const saveUrl = function (userSiteUrl) {
-//   axios.post('user/save-url', {
-//     baseURL,
-//     data: { user_site_url: userSiteUrl },
-//   });
-// };
+class FormModal extends React.Component<FormModalProps, FormModalState> {
+  static defaultProps = {
+    showingForm: false,
+  }
 
-
-class FormModal extends React.Component {
-  constructor(props) {
+  constructor(props: FormModalProps) {
     super(props);
     this.state = { ...defaultState };
 
@@ -44,64 +40,42 @@ class FormModal extends React.Component {
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setError = this.setError.bind(this);
-    this.placeholder = this.placeholder.bind(this);
   }
 
   componentDidMount() {
+    ReactModal.setAppElement('#root');
+
     window.setTimeout(() => {
       const overlay = document.getElementsByClassName('form-modal__overlay')[0];
-      overlay.addEventListener('click', (event) => {
-        if (event.target.classList.contains('form-modal__overlay')) {
+      overlay.addEventListener('click', (event: Event) => {
+        if ((event.target as HTMLDivElement).classList.contains('form-modal__overlay')) {
           this.handleClose();
         }
       });
     }, 10);
   }
 
-  setError(errorMessage) {
-    this.setState({ errorMessage, loading: false });
-  }
-
   handleClose() {
     this.props.hideForm();
   }
 
-  handleFieldChange({ name, value }) {
-    this.setState({
+  handleFieldChange({name, value}: {name: keyof FormModalState, value: string}): void {
+    this.setState((prevState) => ({
+      ...prevState,
       [name]: value,
       errorMessage: '',
-    });
+    }));
   }
 
-  // handleSubmit() {
-  //   const {
-  //     userName, userSurname, userDescription, userSiteUrl,
-  //   } = this.state;
+  handleSubmit() {
+    console.log('submit'); 
+  }
 
-  //   if (baseURL) {
-  //     this.setState({ loading: true });
-  //     axios.all([saveData(userName, userSurname, userDescription), saveUrl(userSiteUrl)])
-  //       .then(axios.spread((dataResponse, urlResponse) => {
-  //         if (!dataResponse || !urlResponse) {
-  //           this.setError('Did not receive a response from one or more requests');
-  //         } else if (dataResponse.status == '200' && urlResponse.status == '200') { // eslint-disable-line eqeqeq
-  //           this.props.getUserData();
-  //           this.handleClose();
-  //         } else {
-  //           const badStatus = [dataResponse.status, urlResponse.status].find(s => s != '200'); // eslint-disable-line eqeqeq
-  //           this.setError(`Status was ${badStatus}`);
-  //         }
-  //       }))
-  //       .catch(({ status, message }) => {
-  //         this.setError(`Error status: ${status}. ${message}.`);
-  //       });
-  //   } else {
-  //     this.setError('No baseURL has been set');
-  //   }
-  // }
-
-  placeholder() { // eslint-disable-line
-    console.log('placeholder function');
+  setError(errorMessage: string) {
+    this.setState({
+      errorMessage,
+      loading: false,
+    });
   }
 
   render() {
@@ -124,6 +98,7 @@ class FormModal extends React.Component {
             tabIndex={0}
           >
             <div />
+            ASDF;LKJ
           </div>
           <FormInput
             onChange={this.handleFieldChange}
@@ -158,15 +133,5 @@ class FormModal extends React.Component {
     );
   }
 }
-
-
-FormModal.propTypes = {
-  showingForm: PropTypes.bool,
-  hideForm: PropTypes.func.isRequired,
-};
-
-FormModal.defaultProps = {
-  showingForm: false,
-};
 
 export default FormModal;

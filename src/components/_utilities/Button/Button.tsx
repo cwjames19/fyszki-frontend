@@ -1,11 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 
+type ButtonProps = {
+  className: string,
+  onClick: Function,
+  label: string,
+  labelStyle: object,
+  icon: string,
+  iconOnly: boolean,
+  disabled: boolean,
+  reversed: boolean,
+} & typeof ButtonDefaultProps;
+
+const ButtonDefaultProps = {
+  className: '',
+  onClick: () => { },
+  label: '',
+  labelStyle: {},
+  icon: '',
+  iconOnly: false,
+  disabled: false,
+  reversed: false,
+};
+
 const Button = function ({
   className, onClick, label, labelStyle, icon, iconOnly, disabled, reversed,
-}) {
+}: ButtonProps) {
   const buttonClasses = classNames({
     button: true,
     'button--disabled': disabled,
@@ -14,7 +35,7 @@ const Button = function ({
     className,
   });
 
-  const iconClasses = classNames(
+  const iconClasses: string = classNames(
     'button__icon',
     `icon--${icon}`,
   );
@@ -35,26 +56,6 @@ const Button = function ({
   );
 };
 
-Button.propTypes = {
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  label: PropTypes.string,
-  labelStyle: PropTypes.object,
-  icon: PropTypes.string,
-  iconOnly: PropTypes.bool,
-  disabled: PropTypes.bool,
-  reversed: PropTypes.bool,
-};
-
-Button.defaultProps = {
-  className: '',
-  onClick: () => { },
-  label: '',
-  labelStyle: {},
-  icon: '',
-  iconOnly: false,
-  disabled: false,
-  reversed: false,
-};
+Button.defaultProps = ButtonDefaultProps;
 
 export default Button;
